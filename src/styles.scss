@@ -1,4 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* Colors */
+  --background-color: #1cdae6;
+  --background-color-hover: #4b47ff;
+  --darkblue: #141d2f;
+  --font-color: #141d2f;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* pt-sans-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "PT Sans";
+  font-style: normal;
+  font-weight: 400;
+  //src: url("./assets/fonts/pt-sans-v17-latin-regular.woff2") format("woff2");
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--background-color);
+  font-family: "PT Sans", "Open Sans", sans-serif;
+  font-size: clamp(1rem, 0.933rem + 0.36vw, 1.2rem);
+  color: var(--font-color);
+}
