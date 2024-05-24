@@ -1,16 +1,4 @@
-import Dexie from 'dexie';
-
-export class AppDB extends Dexie {
-  customer: Dexie.Table<Customer, number>;
-
-  constructor() {
-    super('AppDB');
-    this.version(1).stores({
-      customer: '++id,name,description'
-    });
-    this.customer = this.table('customer');
-  }
-}
+import Dexie, {Table} from 'dexie';
 
 export interface Customer {
   id?: number;
@@ -18,4 +6,28 @@ export interface Customer {
   description: string;
 }
 
+export class AppDB extends Dexie {
+  customers!: Table<Customer, number>;
+
+  constructor() {
+    super('ngdexieliveQuery');
+    this.version(1).stores({
+      customers: '++id'
+    });
+    this.on('populate', ()=> this.populate());
+  }
+
+  async populate() {
+    const customersListId = await db.customers.add({
+      name:'Brueggen',
+      description:'some more information'
+    })
+  }
+
+  async resetDatabase() {
+    await db.transaction('rw', 'customers', () => {
+      this.customers.clear();
+    });
+  }
+}
 export const db = new AppDB();

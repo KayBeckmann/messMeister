@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { liveQuery } from 'dexie';
 import {db, Customer} from '../services/db.service';
 import { FormsModule } from '@angular/forms';
 
@@ -10,14 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './customer.component.scss'
 })
 export class CustomerComponent {
- customers: Customer[] = [];
- userInput!: Customer;
+ customers$= liveQuery(() => db.customers.toArray())
+ name: string ='';
+ description: string ='';
 
- async ngOnInit(){
-  this.customers = await db.customer.toArray();
+ async addNewCustomer(){
+  await db.customers.add({
+    name: this.name,
+    description: this.description
+  })
  }
-
- addItem() {
-this.customers.push(this.userInput);
-}
 }
