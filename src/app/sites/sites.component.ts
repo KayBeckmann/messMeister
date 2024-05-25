@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { liveQuery } from 'dexie';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { db } from '../services/db.service';
 
@@ -20,7 +20,7 @@ export class SitesComponent implements OnInit {
   name!: string;
   description!: string;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -41,7 +41,7 @@ export class SitesComponent implements OnInit {
     this.description = '';
   }
 
-  zeigen() {
-    console.log(this.locations$);
+  loadMeasurement(id: any) {
+    this.router.navigate(['/measurement'], { queryParams: { id } });
   }
 }

@@ -13,12 +13,10 @@
 
   <ul>
     <li *ngFor="let location of locations$ | async">
-      <div>
+      <div class="pointer" (click)="loadMeasurement(location.id)">
         {{ location.name }}
         {{ location.description }}
       </div>
     </li>
   </ul>
 </div>
-
-<div (click)="zeigen()">console</div>

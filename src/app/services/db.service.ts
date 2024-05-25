@@ -39,6 +39,7 @@ export interface RCD {
   description: string;
   nenncurrent: number;
   diffcurrent: number;
+  locationId: number;
 }
 
 export interface MeasurementRcd {
@@ -53,28 +54,26 @@ export interface MeasurementRcd {
 export class AppDB extends Dexie {
   customers!: Table<Customer, number>;
   locations!: Dexie.Table<Location, number>;
+  device!: Dexie.Table<Device, number>;
+  mesurementDevice!: Dexie.Table<MeasurementDevice, number>;
+  rcd!: Dexie.Table<RCD, number>;
+  measurementRcd!: Dexie.Table<MeasurementRcd, number>;
 
   constructor() {
     super('ngdexieliveQuery');
     this.version(1).stores({
       customers: '++id',
       locations: '++id, customerId',
-    });
-    this.on('populate', () => this.populate());
-  }
-
-  async populate() {
-    const customersListId = await db.customers.add({
-      name: 'Brueggen',
-      description: 'some more information',
-    });
-    const locationListId = await db.locations.add({
-      customerId: 1,
-      name: 'Werk 1',
-      description: 'Hauptwerk',
+      device: '++id, locationId, rcdId',
+      mesurementDevice: '++id, deviceId, rcdId',
+      rcd: '++id, locationId',
+      measurementRcd: '++id, rcdId',
     });
   }
 
+  /**
+   * ToDo: Für alle Tabellen erweitern.
+   */
   async resetDatabase() {
     await db.transaction('rw', 'customers', () => {
       this.customers.clear();
