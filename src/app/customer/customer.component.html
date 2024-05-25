@@ -13,8 +13,10 @@
 
   <ul>
     <li *ngFor="let customer of customers$ | async">
-      {{ customer.name }}
-      {{ customer.description }}
+      <div class="pointer" (click)="loadLocation(customer.id)">
+        {{ customer.name }}
+        {{ customer.description }}
+      </div>
     </li>
   </ul>
 </div>

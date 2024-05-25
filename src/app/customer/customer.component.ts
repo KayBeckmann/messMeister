@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { liveQuery } from 'dexie';
-import { db, Customer } from '../services/db.service';
+import { db } from '../services/db.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
@@ -16,6 +17,8 @@ export class CustomerComponent {
   name: string = '';
   description: string = '';
 
+  constructor(private router: Router) {}
+
   async addNewCustomer() {
     await db.customers.add({
       name: this.name,
@@ -24,5 +27,9 @@ export class CustomerComponent {
 
     this.name = '';
     this.description = '';
+  }
+
+  loadLocation(id: any) {
+    this.router.navigate(['/location'], { queryParams: { id } });
   }
 }

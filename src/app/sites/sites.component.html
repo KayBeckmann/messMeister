@@ -1,1 +1,24 @@
-<p>sites works!</p>
+<div>
+  <h2>Neuen Standort hinzufügen</h2>
+  <form (ngSubmit)="addNewLocation()">
+    <input [(ngModel)]="name" name="name" required placeholder="Name" />
+    <input
+      [(ngModel)]="description"
+      name="description"
+      required
+      placeholder="Beschreibung"
+    />
+    <button type="submit">Hinzufügen</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let location of locations$ | async">
+      <div>
+        {{ location.name }}
+        {{ location.description }}
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div (click)="zeigen()">console</div>

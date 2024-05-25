@@ -27,3 +27,7 @@ body {
   font-size: clamp(1rem, 0.933rem + 0.36vw, 1.2rem);
   color: var(--font-color);
 }
+
+.pointer {
+  cursor: pointer;
+}
