@@ -4,10 +4,8 @@ import { liveQuery } from 'dexie';
 import { ActivatedRoute, Router } from '@angular/router';
 import { db } from '../services/db.service';
 import { FormsModule } from '@angular/forms';
-
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-// import { style } from '@angular/animations';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-systemmeasurement',
@@ -52,10 +50,27 @@ export class SystemmeasurementComponent {
   }
 
   generatePDF() {
-    pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    const documentDefinition = {
-      content: ['Hier ist dein PDF-Inhalt.'],
-    };
-    pdfMake.createPdf(documentDefinition).download('mein_pdf_dokument.pdf');
+    this.devices$.subscribe((devices) => {
+      const doc = new jsPDF();
+
+      // Tabellenkopf
+      const head = [['BMK', 'Bezeichnung', 'Nennstrom']];
+
+      // Tabellenkörper
+      const data = devices.map((device, index) => [
+        device.name,
+        device.description,
+        device.current,
+      ]);
+
+      // Hinzufügen der Tabelle zum PDF
+      (doc as any).autoTable({
+        head: head,
+        body: data,
+      });
+
+      // Speichern des PDFs
+      doc.save('devices.pdf');
+    });
   }
 }
