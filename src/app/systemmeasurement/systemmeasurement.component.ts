@@ -26,7 +26,7 @@ export class SystemmeasurementComponent {
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.locationId = params['id'];
     });
@@ -50,7 +50,7 @@ export class SystemmeasurementComponent {
   }
 
   generatePDF() {
-    this.devices$.subscribe((devices) => {
+    this.devices$.subscribe(async (devices) => {
       const doc = new jsPDF();
 
       // Tabellenkopf
