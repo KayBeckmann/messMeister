@@ -6,6 +6,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { HeadComponent } from './head/head.component';
 import { MenuComponent } from './menu/menu.component';
 import { SitesComponent } from './sites/sites.component';
+import {FooterComponent}from './footer/footer.component'
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { SitesComponent } from './sites/sites.component';
     HeadComponent,
     MenuComponent,
     SitesComponent,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
