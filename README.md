@@ -1,27 +1,17 @@
 # MessMeister
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.1.
+Der Aufbau wird noch umgestellt.
+1. Kunde
+2. Standort
+3. Verteilung
+4. RCD (Wenn vorhanden, wenn nicht ist Wert = 0)
+5. RCD Messung mit Datum
+6. Stromkreis (mit Zugehörigkeit zu RCD)
+7. Messung mit Messdatum
 
-## Development server
+Das Menü soll eine Navigation innerhalb der Ebenen ermöglichen.
+Jeweils zurück, zu den vorherigen Ebenen und die Entsprechenden Bereiche in den unteren Ebenen.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Ein PDF-Report soll die Messungen pro Verteilung erstellen, mit den Messwerten aus einem angegebenen Datumsbereich.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Im Dashboard soll es eine Übersicht geben, die anzeigt, wie viele Messungen demnächst fällig werden. Die entsprechenden Kunden müssen dann gefiltert werden, damit man einen Termin absprechen kann.
