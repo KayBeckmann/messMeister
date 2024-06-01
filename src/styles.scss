@@ -1,6 +1,6 @@
 :root {
   /* Colors */
-  --background-color: #1cdae6;
+  --background-color: #a4c2c4;
   --background-color-hover: #4b47ff;
   --darkblue: #141d2f;
   --font-color: #141d2f;
@@ -22,6 +22,7 @@ html {
 body {
   height: 100%;
   margin: 0;
+  padding: 0;
   background-color: var(--background-color);
   font-family: "PT Sans", "Open Sans", sans-serif;
   font-size: clamp(1rem, 0.933rem + 0.36vw, 1.2rem);
